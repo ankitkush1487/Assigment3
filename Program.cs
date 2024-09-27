@@ -107,11 +107,11 @@ namespace Assignment3
             Animal dog = new Dog("Buddy", 3);
             dog.MakeSound();
             dog.Sleep();
-            ((Dog)dog).Fetch();  // Call the unique method Fetch
+            ((Dog)dog).Fetch(); 
 
             Console.WriteLine();
 
-            // Create a Cat object
+            
             Animal cat = new Cat("Whiskers", 2);
             cat.MakeSound();
             cat.Sleep();
@@ -120,7 +120,7 @@ namespace Assignment3
 
             Console.WriteLine("Question 9 Solution");
             {
-                // Create a Car object
+                
                 Car myCar = new Car
                 {
                     Make = "Toyota",
@@ -136,16 +136,15 @@ namespace Assignment3
                 Console.WriteLine("Question 10 Solution");
                 SavingsAccount mySavings = new SavingsAccount("SA12345", 1000, 5);
 
-                // Deposit some money
                 mySavings.Deposit(500);
 
-                // Withdraw some money
+                
                 mySavings.Withdraw(300);
 
-                // Calculate interest and update balance
+                
                 mySavings.CalculateInterest();
 
-                // Display the final balance
+                
                 Console.WriteLine($"Final balance: {mySavings.Balance}");
                 Console.ReadLine();
             }
@@ -328,63 +327,62 @@ namespace Assignment3
         // question 8
         public abstract class Animal
         {
-            // Properties common to all animals
+            
             public string Name { get; set; }
             public int Age { get; set; }
 
-            // Constructor to initialize the name and age of the animal
+            
             public Animal(string name, int age)
             {
                 Name = name;
                 Age = age;
             }
 
-            // Abstract method that derived classes must implement
+            
             public abstract void MakeSound();
 
-            // Method that can be overridden by derived classes if needed
+            
             public virtual void Sleep()
             {
                 Console.WriteLine(Name + " is sleeping.");
             }
         }
-        // Dog.cs
+        
         public class Dog : Animal
         {
-            // Constructor for Dog, calling base class constructor
+            
             public Dog(string name, int age) : base(name, age) { }
 
-            // Implementation of the abstract method
+            
             public override void MakeSound()
             {
                 Console.WriteLine(Name + " says: Woof Woof!");
             }
 
-            // Unique method for Dog class
+           
             public void Fetch()
             {
                 Console.WriteLine(Name + " is fetching the ball.");
             }
         }
-        // Cat.cs
+        
         public class Cat : Animal
         {
-            // Constructor for Cat, calling base class constructor
+            
             public Cat(string name, int age) : base(name, age) { }
 
-            // Implementation of the abstract method
+            
             public override void MakeSound()
             {
                 Console.WriteLine(Name + " says: Meow!");
             }
 
-            // Unique method for Cat class
+            
             public void Climb()
             {
                 Console.WriteLine(Name + " is climbing a tree.");
             }
 
-            // Override the Sleep method if needed
             public override void Sleep()
             {
                 Console.WriteLine(Name + " is curled up and purring while sleeping.");
@@ -392,19 +390,19 @@ namespace Assignment3
         }
 
         // question 9
-        // Vehicle.cs
+        // Vehicle
         public class Vehicle
         {
             public string Make { get; set; }
             public string Model { get; set; }
 
-            // Method to start the engine
+            
             public void StartEngine()
             {
                 Console.WriteLine("The engine is starting.");
             }
 
-            // Method to stop the engine
+            
             public void StopEngine()
             {
                 Console.WriteLine("The engine is stopping.");
@@ -421,8 +419,7 @@ namespace Assignment3
                 Console.WriteLine("The car is honking the horn!");
             }
         }
-        // SportsCar.cs
-        // This will cause a compile-time error because Car is sealed
+        
         public class SportsCar
         {
             public int TopSpeed { get; set; }
@@ -432,21 +429,21 @@ namespace Assignment3
                 Console.WriteLine("Turbo boost activated!");
             }
         }
-        // BankAccount.cs
+       
         public class BankAccount
         {
-            // Properties for AccountNumber and Balance
+           
             public string AccountNumber { get; set; }
             public decimal Balance { get; protected set; }
 
-            // Constructor to initialize the account
+            
             public BankAccount(string accountNumber, decimal initialBalance)
             {
                 AccountNumber = accountNumber;
                 Balance = initialBalance;
             }
 
-            // Method to deposit money into the account
+           
             public void Deposit(decimal amount)
             {
                 if (amount > 0)
@@ -460,7 +457,7 @@ namespace Assignment3
                 }
             }
 
-            // Method to withdraw money from the account
+            
             public virtual void Withdraw(decimal amount)
             {
                 if (amount > 0 && amount <= Balance)
@@ -474,32 +471,29 @@ namespace Assignment3
                 }
             }
         }
-        // SavingsAccount.cs
+        
         public sealed class SavingsAccount : BankAccount
         {
             public decimal InterestRate { get; set; }
 
-            // Constructor to initialize SavingsAccount with interest rate
             public SavingsAccount(string accountNumber, decimal initialBalance, decimal interestRate)
                 : base(accountNumber, initialBalance)
             {
                 InterestRate = interestRate;
             }
 
-            // Method to calculate interest based on the balance and interest rate
             public void CalculateInterest()
             {
                 decimal interest = Balance * InterestRate / 100;
                 Console.WriteLine($"Interest calculated: {interest}");
-                Deposit(interest); // Add interest to balance
+                Deposit(interest); 
             }
 
-            // Override the Withdraw method to impose restrictions specific to SavingsAccount
+            
             public override void Withdraw(decimal amount)
             {
                 if (amount > 0 && amount <= Balance)
                 {
-                    // Savings account might have additional rules for withdrawal (e.g., max withdrawal limit)
                     Console.WriteLine("Processing withdrawal from SavingsAccount...");
                     base.Withdraw(amount);
                 }
